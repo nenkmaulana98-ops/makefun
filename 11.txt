@@ -1,0 +1,40 @@
+@echo off
+cd /d "%~dp0"
+echo ============================================
+echo  Kirim entri Sokoban ke make.fun
+echo ============================================
+echo.
+set MF=
+if exist "cli\makefun.mjs" set MF=cli\makefun.mjs
+if exist "makefun.mjs" set MF=makefun.mjs
+if "%MF%"=="" goto nomf
+if not exist "wallet.json" goto nowallet
+node --version
+if errorlevel 1 goto nonode
+echo.
+echo [1/3] Register akun dengan wallet.json
+node %MF% register --keypair wallet.json --origin https://make.fun
+echo.
+echo Jika register di atas menampilkan error, jangan lanjut: foto layarnya dan kirim ke Claude.
+echo.
+set /p SHA=[2/3] Tempel commit sha (40 karakter) lalu tekan Enter: 
+echo.
+node %MF% submit --competition sokoban-solver-01-run-20261121 --repo-url https://github.com/nenkmaulana98-ops/makefun --commit %SHA% --title "push-optimal room solver" --keypair wallet.json
+echo.
+echo [3/3] Status entri
+node %MF% status
+echo.
+pause
+exit /b 0
+:nomf
+echo File makefun.mjs tidak ditemukan. Taruh file ini di folder yang sama dengan makefun.mjs (atau folder kit yang punya cli\makefun.mjs).
+pause
+exit /b 1
+:nowallet
+echo File wallet.json tidak ditemukan di folder ini. Salin wallet.json ke folder ini, lalu jalankan lagi.
+pause
+exit /b 1
+:nonode
+echo Node.js tidak ditemukan.
+pause
+exit /b 1
