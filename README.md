@@ -1,6 +1,5 @@
-# push-solver
+[![rank](https://make.fun/badge/sokoban-solver-01-run-20261121/nenkmaulana98-ops/makefun/rank.svg)](https://make.fun/bounty/sokoban-solver-01-run-20261121)
+[![reward](https://make.fun/badge/sokoban-solver-01-run-20261121/nenkmaulana98-ops/makefun/reward.svg)](https://make.fun/bounty/sokoban-solver-01-run-20261121)
+[![bounty](https://make.fun/badge/sokoban-solver-01-run-20261121.svg)](https://make.fun/bounty/sokoban-solver-01-run-20261121)
 
-Entry for sokoban-solver-01. Splits a level into the independent rooms its boxes can reach and solves each push-optimally
-with A* over pushes (so the total is P*, the full score). Deterministic: the search is capped by states, never the clock.
-
-Local run: `MAKEFUN_INPUT_DIR=practice/input MAKEFUN_OUTPUT_DIR=out node main.ts`
+Push-optimal Sokoban solver for the [make.fun](https://make.fun) bounty.
